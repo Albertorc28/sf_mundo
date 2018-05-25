@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Region;
+use App\Entity\Pais;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class RegionType extends AbstractType
 {
@@ -13,8 +16,13 @@ class RegionType extends AbstractType
     {
         $builder
             ->add('nombre')
-            ->add('idioma')
-            ->add('pais')
+            ->add('idioma') 
+            ->add('pais',EntityType::class,array(
+              'class' => pais::class,
+              'choice_label' => function ($pais) {
+                  return $pais->getNombre();
+           }))
+            ->add('save', SubmitType::class, array('attr' => array('class' => 'btn btn-success')))
         ;
     }
 

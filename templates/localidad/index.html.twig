@@ -1,20 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+	{% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('build/appstyle.css') }}">
+    {% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	<h1>Listado de localidades</h1>
+	<ul>
+	    {% for localidad in listalocalidad %}
+	        <li>{{ localidad.nombre }} - {{ localidad.area }} - {{ localidad.habitantes }} - {{ localidad.cp }} - {{ localidad.provincia.nombre }}</li>
+	    {% endfor %}
+	</ul>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/LocalidadController.php'|file_link(0) }}">src/Controller/LocalidadController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/localidad/index.html.twig'|file_link(0) }}">templates/localidad/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<button>Hola</button>
+	
+{% endblock %}
+
+{% block javascripts %}
+  	<script src="{{ asset('build/app.js') }}"></script>
 {% endblock %}

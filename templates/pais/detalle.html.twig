@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block body %}    
+	<h1>Detalle País</h1>    
+	{{ pais.nombre }}, {{ pais.continente}} {% if pais.presidente is  not null %}
+                                                 -  {{pais.presidente.nombre}}
+                                                {% endif %}
+	<ul>
+	   	{% for region in pais.regiones %}
+	    	<li>{{ region.nombre }} - {{ region.idioma }}</li>
+	    		<ul>
+	       			{% for provincia in region.provincias %}
+	       				<li>{{ provincia.nombre }}</li>
+	       					<ul>
+	       						{% for localidad in provincia.localidades %}
+	       							<li>{{ localidad.nombre }} - {{ localidad.area }} - {{ localidad.habitantes }} - {{ localidad.cp }}</li>
+	       						{% endfor %}
+	       					</ul>
+	       			{% endfor %}
+	   	  		</ul>
+	   {% endfor %}
+	</ul>
+    
+{% endblock %}
