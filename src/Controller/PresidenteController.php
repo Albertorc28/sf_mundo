@@ -31,7 +31,7 @@ class PresidenteController extends Controller
    	}
 
    	/**
-    * @Route("/nuevo", name="_nuevo")
+    * @Route("/nuevo", name="presidente_nuevo")
     */
     public function index(Request $request)
     {

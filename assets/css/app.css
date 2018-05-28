@@ -1,1 +1,16 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+img{
+	margin-right:500px;
+}
+
+.navbar-nav{
+	width:100%;
+}
+
+footer{
+	background-color: grey;
+	width: 100%;
+    bottom: 0;
+    position: fixed;
+    text-align:center;
+}

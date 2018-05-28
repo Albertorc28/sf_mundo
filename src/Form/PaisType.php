@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Form\PresidenteType;
 use App\Entity\Presidente;
 use App\Entity\Pais;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -17,7 +18,9 @@ class PaisType extends AbstractType
         $builder
             ->add('nombre')
             ->add('continente')
-            ->add('save', SubmitType::class, array('attr' => array('class' => 'btn btn-success')))
+            ->add('presidente', PresidenteType::class)
+            /*->add('save', SubmitType::class, array('attr' => array('class' => 'btn btn-success')))*/
+
         ;
     }
 

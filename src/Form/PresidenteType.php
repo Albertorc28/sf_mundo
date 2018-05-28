@@ -26,7 +26,9 @@ class PresidenteType extends AbstractType
             ->add('pais',EntityType::class,array(
               'class' => pais::class,
               'choice_label' => function ($pais) {
+                  if($pais->getPresidente()==null){
                   return $pais->getNombre();
+                }
            }))
             ->add('save', SubmitType::class, array('attr' => array('class' => 'btn btn-success')))
         ;
