@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,16 @@ class Localidad
      * @ORM\JoinColumn(nullable=false)
      */
     private $provincia;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Monumento", mappedBy="localidad")
+     */
+    private $monumentos;
+
+    public function __construct()
+    {
+        $this->monumentos = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -103,6 +115,37 @@ class Localidad
     public function setProvincia(?Provincia $provincia): self
     {
         $this->provincia = $provincia;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Monumento[]
+     */
+    public function getMonumentos(): Collection
+    {
+        return $this->monumentos;
+    }
+
+    public function addMonumento(Monumento $monumento): self
+    {
+        if (!$this->monumentos->contains($monumento)) {
+            $this->monumentos[] = $monumento;
+            $monumento->setLocalidad($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMonumento(Monumento $monumento): self
+    {
+        if ($this->monumentos->contains($monumento)) {
+            $this->monumentos->removeElement($monumento);
+            // set the owning side to null (unless already changed)
+            if ($monumento->getLocalidad() === $this) {
+                $monumento->setLocalidad(null);
+            }
+        }
 
         return $this;
     }
